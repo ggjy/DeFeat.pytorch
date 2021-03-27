@@ -1,6 +1,6 @@
 # DeFeat.pytorch Code Base
 
-Implementation of our CVPR2020 paper [Distilling Object Detectors via Decoupled Features]()
+Implementation of our CVPR2021 paper [Distilling Object Detectors via Decoupled Features]()
 
 The code will be released ASAP.
 
