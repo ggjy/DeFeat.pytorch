@@ -12,7 +12,27 @@ Knowledge distillation is a widely used paradigm for inheriting information from
 - This repo uses: `mmdet-v2.0` `mmcv-0.5.6` `cuda 10.1`
 
 ### VOC Results
-See [here](https://github.com/ggjy/DeFeat.pytorch/blob/main/configs/faster_rcnn/README.md).
+
+**Notes:**
+
+- Faster RCNN based model
+- Batch: sample_per_gpu x gpu_num
+
+
+| Model | BN | Grad clip | Batch | Lr schd | box AP | Model | Log |
+|:-----:|:--:|:---------:|:-----:|:-------:|:------:|:-----:|:---:|
+| R101  | bn | None      |  8x2  | 0.01    | 81.70  | |     |
+| R101  | bn | None      |  8x2  | 0.02    | 82.27  | | [GoogleDrive](https://drive.google.com/file/d/1KqmlLZMWxa264Z-PjFLD08iw_lmiFyDK/view?usp=sharing) |
+| R101  | syncbn | max=35 | 8x2  | 0.01    | 81.59  | |     |
+| R101  | syncbn | None  |  8x2  | 0.02    | 81.83  | |     |
+| R50   | bn | max=35    |  8x2  | 0.02    | 80.97  | |     |
+| R50   | syncbn | None  |  8x2  | 0.02    | 80.76  | |     |
+| R50   | syncbn | max=35 | 8x2  | 0.01    | 80.66  | |     |
+| R50   | bn | None      |  8x2  | 0.01    | 80.52  | | [GoogleDrive](https://drive.google.com/file/d/16-trLtFphZQegdf0aB9QCndo2m8Owndg/view?usp=sharing) |
+| R101-50-FGFI-w1 | bn | max=35 | 8x2  | 0.01    | 81.04 | |  [GoogleDrive](https://drive.google.com/file/d/1xUjBUrx54-r6byDH0vs-YkNsz2l0F8ZJ/view?usp=sharing)   |
+| R101-50-FGFI-w2 | bn | max=35 | 8x2  | 0.01    | 81.17 | | [GoogleDrive](https://drive.google.com/file/d/1YKsDP87zNIJp9ucITL6v_T1OpuHbWbuA/view?usp=sharing)    |
+| R101-50-FGFI-w2 | bn | max=35 | 8x2  | 0.01    | 82.04 | | [GoogleDrive](https://drive.google.com/file/d/1_80QQVhXgjydHjZvMCt2pdKQaL9sW-rC/view?usp=sharing)    |
+
 
 ## Acknowledgement
 Our code is based on the open source project [MMDetection](https://github.com/open-mmlab/mmdetection).

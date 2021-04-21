@@ -1,11 +1,9 @@
-# KD for FGFI
-# Distilling Object Detectors with Fine-grained Feature Imitation
-# https://arxiv.org/abs/1906.03609
+# KD for DeFeat
 model = dict(
     type='FasterRCNNKD',
     pretrained='/tmp/ImageNet-pretrained/resnet50-19c8e357.pth',
     hint_adapt=dict(
-        type='neck-adapt,mask-neck-roi,pixel-wise',
+        type='neck-adapt,neck-decouple,mask-neck-gt,pixel-wise',
         neck_in_channels=[256,256,256,256,256],
         neck_out_channels=[256,256,256,256,256],
         bb_in_channels=[512,1024,2048],
@@ -156,7 +154,7 @@ test_pipeline = [
         ])
 ]
 data = dict(
-    samples_per_gpu=4,
+    samples_per_gpu=8,
     workers_per_gpu=4,
     train=dict(
         type='RepeatDataset',
@@ -181,7 +179,7 @@ data = dict(
         pipeline=test_pipeline))
 evaluation = dict(interval=1, metric='mAP')
 # optimizer
-optimizer = dict(type='SGD', lr=0.02, momentum=0.9, weight_decay=0.0001)
+optimizer = dict(type='SGD', lr=0.01, momentum=0.9, weight_decay=0.0001)
 optimizer_config = dict(grad_clip=dict(max_norm=35, norm_type=2))
 # learning policy
 lr_config = dict(
